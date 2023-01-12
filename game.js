@@ -28,7 +28,7 @@ var FPS = 60;
 var maxScore = 0;
 
 var images = {};
-
+//设置播放速度
 var speed = function (fps) {
 	FPS = parseInt(fps);
 }

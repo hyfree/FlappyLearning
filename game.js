@@ -292,7 +292,7 @@ window.onload = function () {
 	var start = function () {
 		Neuvol = new Neuroevolution({
 			population: 50,//人口数量
-			network: [2, [2], [1], 1],//神经网络结构
+			network: [2, [2], [2], 1],//神经网络结构
 		});
 		game = new Game();
 		game.start();

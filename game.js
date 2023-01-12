@@ -32,7 +32,7 @@ var images = {};
 var speed = function (fps) {
 	FPS = parseInt(fps);
 }
-
+//加载图片素材
 var loadImages = function (sources, callback) {
 	var nb = 0;
 	var loaded = 0;
@@ -195,7 +195,7 @@ Game.prototype.update = function () {
 			}
 		}
 	}
-
+	//更新障碍物
 	for (var i = 0; i < this.pipes.length; i++) {
 		this.pipes[i].update();
 		if (this.pipes[i].isOut()) {
@@ -218,7 +218,7 @@ Game.prototype.update = function () {
 	}
 
 	this.score++;
-	this.maxScore = (this.score > this.maxScore) ? this.score : this.maxScore;
+	this.maxScore = (this.score > this.maxScore) ? this.score : this.maxScore;//计算最高得分
 	var self = this;
 
 	if (FPS == 0) {
@@ -232,7 +232,7 @@ Game.prototype.update = function () {
 	}
 }
 
-
+//判断是否全部阵亡
 Game.prototype.isItEnd = function () {
 	for (var i in this.birds) {
 		if (this.birds[i].alive) {
@@ -241,13 +241,15 @@ Game.prototype.isItEnd = function () {
 	}
 	return true;
 }
-
+//显示界面
 Game.prototype.display = function () {
+	//清除画布
 	this.ctx.clearRect(0, 0, this.width, this.height);
+	//画面比例
 	for (var i = 0; i < Math.ceil(this.width / images.background.width) + 1; i++) {
 		this.ctx.drawImage(images.background, i * images.background.width - Math.floor(this.backgroundx % images.background.width), 0)
 	}
-
+	//绘制障碍物
 	for (var i in this.pipes) {
 		if (i % 2 == 0) {
 			this.ctx.drawImage(images.pipetop, this.pipes[i].x, this.pipes[i].y + this.pipes[i].height - images.pipetop.height, this.pipes[i].width, images.pipetop.height);
@@ -255,8 +257,9 @@ Game.prototype.display = function () {
 			this.ctx.drawImage(images.pipebottom, this.pipes[i].x, this.pipes[i].y, this.pipes[i].width, images.pipetop.height);
 		}
 	}
-
+	//填充颜色
 	this.ctx.fillStyle = "#FFC600";
+	//线条颜色
 	this.ctx.strokeStyle = "#CE9E00";
 	for (var i in this.birds) {
 		if (this.birds[i].alive) {
@@ -276,11 +279,12 @@ Game.prototype.display = function () {
 	this.ctx.fillText("Alive : " + this.alives + " / " + Neuvol.options.population, 10, 100);
 
 	var self = this;
+	//动画绘制回调
 	requestAnimationFrame(function () {
 		self.display();
 	});
 }
-
+//当页面加载完成之后进行调用
 window.onload = function () {
 	var sprites = {
 		bird: "./img/bird.png",

@@ -30,16 +30,12 @@ var Neuroevolution = function (options) {
 		},
 
 		// various factors and parameters (along with default values).
-		network: [1, [1], 1], // Perceptron network structure (1 hidden
-		// layer).
+		network: [1, [1], 1], // Perceptron network structure (1 hidden  layer).
 		population: 50, // Population by generation.
-		elitism: 0.2, // Best networks kepts unchanged for the next
-		// generation (rate).
-		randomBehaviour: 0.2, // New random networks for the next generation
-		// (rate).
+		elitism: 0.2, // Best networks kepts unchanged for the next generation (rate).
+		randomBehaviour: 0.2, // New random networks for the next generation (rate).
 		mutationRate: 0.1, // Mutation rate on the weights of synapses.
-		mutationRange: 0.5, // Interval of the mutation changes on the
-		// synapse weight.
+		mutationRange: 0.5, // Interval of the mutation changes on the  synapse weight.
 		historic: 0, // Latest generations saved.
 		lowHistoric: false, // Only save score (not the network).
 		scoreSort: -1, // Sort order (-1 = desc, 1 = asc).
@@ -169,7 +165,7 @@ var Neuroevolution = function (options) {
 
 	/**
 	 * Create a copy of the Network (neurons and weights).
-	 *
+	 * 
 	 * Returns number of neurons per layer and a flat array of all weights.
 	 *
 	 * @return Network data.

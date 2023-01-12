@@ -148,7 +148,7 @@ Game.prototype.start = function () {
 	this.pipes = [];
 	this.birds = [];
 
-	this.gen = Neuvol.nextGeneration();
+	this.gen = Neuvol.nextGeneration();//生成智能体的神经网络
 	for (var i in this.gen) {
 		var b = new Bird();
 		this.birds.push(b)
@@ -178,7 +178,7 @@ Game.prototype.update = function () {
 			];
 
 			var res = this.gen[i].compute(inputs);//智能体输入变量，并返回结果
-			if (res > 0.5) {
+			if (res[0] > 0.5) {
 				this.birds[i].flap();//智能体飞起
 			}
 
@@ -187,8 +187,9 @@ Game.prototype.update = function () {
 				this.birds[i].alive = false;
 				this.alives--;
 				//console.log(this.alives);
-				Neuvol.networkScore(this.gen[i], this.score);
+				Neuvol.networkScore(this.gen[i], this.score);//更新网络得分
 				if (this.isItEnd()) {
+					//如果智能体全部阵亡，重新开始
 					this.start();
 				}
 			}
@@ -291,7 +292,7 @@ window.onload = function () {
 	var start = function () {
 		Neuvol = new Neuroevolution({
 			population: 50,//人口数量
-			network: [2, [2], [1], 1],//网络
+			network: [2, [2], [1], 1],//神经网络结构
 		});
 		game = new Game();
 		game.start();
